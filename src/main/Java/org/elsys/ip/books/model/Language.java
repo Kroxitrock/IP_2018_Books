@@ -1,16 +1,14 @@
 package org.elsys.ip.books.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "language")
 public class Language implements Serializable{
-    int id;
-    String name;
+
+    private int id;
+    private String name;
 
     public Language() {
     }
@@ -19,8 +17,8 @@ public class Language implements Serializable{
         this.id = id;
         this.name = name;
     }
-
     @Id
+    @GeneratedValue
     @Column(name = "id")
     public int getId() {
         return id;

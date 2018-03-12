@@ -11,10 +11,9 @@ public class HibernateUtil {
 
     private static SessionFactory buildSessionFactory() {
         try {
-            Configuration configuration = new Configuration().addAnnotatedClass(Author.class).addAnnotatedClass(Book.class).addAnnotatedClass(BookDescription.class).addAnnotatedClass(Comments.class).addAnnotatedClass(ReadList.class).addAnnotatedClass(User.class).configure();
+            Configuration configuration = new Configuration().addAnnotatedClass(Language.class).addAnnotatedClass(Author.class).addAnnotatedClass(Book.class).addAnnotatedClass(BookDescription.class).addAnnotatedClass(Comments.class).addAnnotatedClass(ReadList.class).addAnnotatedClass(User.class).configure();
             StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
-            SessionFactory factory = configuration.buildSessionFactory(builder.build());
-            return factory;
+            return configuration.buildSessionFactory(builder.build());
         }
         catch (Throwable ex) {
             // Make sure you log the exception, as it might be swallowed

@@ -6,9 +6,9 @@ import java.io.Serializable;
 @Entity
 @Table(name = "author")
 public class Author implements Serializable{
-    int id;
-    String name;
-    String bio;
+    private int id;
+    private String name;
+    private String bio;
 
     public Author() {
     }

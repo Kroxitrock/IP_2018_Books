@@ -3,16 +3,18 @@ package org.elsys.ip.books.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "book")
 public class Book implements Serializable{
-    int id;
-    Date releaseDate;
-    String genre;
-    String coverPath;
+    private int id;
+    private Date releaseDate;
+    private String genre;
+    private String coverPath;
 
-    Language prefferedLanguage;
+    private Set<Language> prefferedLanguage = new HashSet<Language>();
 
     public Book() {
     }
@@ -24,7 +26,7 @@ public class Book implements Serializable{
         this.coverPath = coverPath;
     }
 
-    public Book(int id, Date releaseDate, String genre, String coverPath, Language prefferedLanguage) {
+    public Book(int id, Date releaseDate, String genre, String coverPath, Set<Language> prefferedLanguage) {
         this.id = id;
         this.releaseDate = releaseDate;
         this.genre = genre;
@@ -51,8 +53,8 @@ public class Book implements Serializable{
     public String getCoverPath() {
         return coverPath;
     }
-    @ManyToOne(fetch = FetchType.LAZY)
-    public Language getPrefferedLanguage() {
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = Language.class)
+    public Set<Language> getPrefferedLanguage() {
         return prefferedLanguage;
     }
 
@@ -72,7 +74,7 @@ public class Book implements Serializable{
         this.coverPath = coverPath;
     }
 
-    public void setPrefferedLanguage(Language prefferedLanguage) {
+    public void setPrefferedLanguage(Set<Language> prefferedLanguage) {
         this.prefferedLanguage = prefferedLanguage;
     }
 }

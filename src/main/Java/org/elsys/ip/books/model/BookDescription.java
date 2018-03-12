@@ -2,16 +2,18 @@ package org.elsys.ip.books.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "book_description")
 public class BookDescription implements Serializable{
-    int id;
-    String name;
-    String description;
+    private int id;
+    private String name;
+    private String description;
 
-    Book book;
-    Language language;
+    private Set<Book> book = new HashSet<Book>();
+    private Set<Language> language = new HashSet<Language>();
 
     public BookDescription() {
     }
@@ -22,7 +24,7 @@ public class BookDescription implements Serializable{
         this.description = description;
     }
 
-    public BookDescription(int id, String name, String description, Book book, Language language) {
+    public BookDescription(int id, String name, String description, Set<Book> book, Set<Language> language) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -46,13 +48,13 @@ public class BookDescription implements Serializable{
         return description;
     }
 
-    @OneToMany(fetch = FetchType.LAZY)
-    public Book getBook() {
+    @ManyToOne(targetEntity = Book.class)
+    public Set<Book> getBook() {
         return book;
     }
 
-    @OneToMany(fetch = FetchType.LAZY)
-    public Language getLanguage() {
+    @ManyToOne(targetEntity = Language.class)
+    public Set<Language> getLanguage() {
         return language;
     }
 
@@ -68,11 +70,11 @@ public class BookDescription implements Serializable{
         this.description = description;
     }
 
-    public void setBook(Book book) {
+    public void setBook(Set<Book> book) {
         this.book = book;
     }
 
-    public void setLanguage(Language language) {
+    public void setLanguage(Set<Language> language) {
         this.language = language;
     }
 }

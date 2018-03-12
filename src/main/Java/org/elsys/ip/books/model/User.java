@@ -51,7 +51,7 @@ public class User implements Serializable{
     public String getEmail() {
         return email;
     }
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Language.class)
     public Language getPreferredLanguage() {
         return preferredLanguage;
     }

@@ -2,16 +2,18 @@ package org.elsys.ip.books.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "comments")
 public class Comments implements Serializable{
-    int id;
-    String body;
-    Double rating;
+    private int id;
+    private String body;
+    private Double rating;
 
-    User user;
-    Book book;
+    private Set<User> user = new HashSet<User>();
+    private Set<Book> book = new HashSet<Book>();
 
     public Comments() {
     }
@@ -22,7 +24,7 @@ public class Comments implements Serializable{
         this.rating = rating;
     }
 
-    public Comments(int id, String body, Double rating, User user, Book book) {
+    public Comments(int id, String body, Double rating, Set<User> user, Set<Book> book) {
         this.id = id;
         this.body = body;
         this.rating = rating;
@@ -44,12 +46,32 @@ public class Comments implements Serializable{
     public Double getRating() {
         return rating;
     }
-    @ManyToOne(fetch = FetchType.LAZY)
-    public User getUser() {
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = User.class)
+    public Set<User> getUser() {
         return user;
     }
-    @OneToMany(fetch = FetchType.LAZY)
-    public Book getBook() {
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Book.class)
+    public Set<Book> getBook() {
         return book;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
+
+    public void setUser(Set<User> user) {
+        this.user = user;
+    }
+
+    public void setBook(Set<Book> book) {
+        this.book = book;
     }
 }
