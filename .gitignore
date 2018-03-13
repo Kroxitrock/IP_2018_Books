@@ -1,13 +1,1 @@
-**/*.iml
-**/out
-**/.idea
-**/.git
-**/.DS_Store
-**/.settings
-**/.project
-**/.classpath
-**/build
-**/.gradle
-**/gradlew.bat
-**/gradlew
-**/gradle
+*

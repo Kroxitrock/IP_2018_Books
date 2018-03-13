@@ -39,7 +39,7 @@ public class ReadList implements Serializable{
         return status;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, targetEntity = User.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = User.class)
     public Set<User> getUser() {
         return user;
     }

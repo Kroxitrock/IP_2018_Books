@@ -3,9 +3,7 @@ package org.elsys.ip.books.resource;
 import org.elsys.ip.books.model.Language;
 import org.elsys.ip.books.service.LanguageService;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import java.util.List;
 
 @Path("/languages")
@@ -16,4 +14,19 @@ public class LanguageResource {
     @Produces("application/json")
     public List<Language> getLanguages(){ return languageService.getLanguages();}
 
+    @POST
+    @Consumes("application/json")
+    @Produces("application/json")
+    public List<Language> addLanguage(Language language) {
+        return languageService.addLanguages(language);
+    }
+
+
+    @PUT
+    @Path("/{id}")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Language updateLanguage(@PathParam("id") Integer id, Language language) {
+        return languageService.updateLanguage(id, language);
+    }
 }
