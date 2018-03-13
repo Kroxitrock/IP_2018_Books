@@ -53,7 +53,7 @@ public class Book implements Serializable{
     public String getCoverPath() {
         return coverPath;
     }
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = Language.class)
+    @ManyToOne  (fetch = FetchType.LAZY, targetEntity = Language.class)
     public Set<Language> getPrefferedLanguage() {
         return prefferedLanguage;
     }
