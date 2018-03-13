@@ -30,11 +30,12 @@ public class LanguageRepository {
 
     public Language updateLanguage(Integer id, Language language) {
         Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
         Language old = session.get(Language.class, id);
         old.setName(language.getName());
-        session.merge(old);
+        session.update(old);
         session.getTransaction().commit();
         session.close();
-        return null;
+        return old;
     }
 }
