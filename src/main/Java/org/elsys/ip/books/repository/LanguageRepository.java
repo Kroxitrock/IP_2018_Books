@@ -38,4 +38,15 @@ public class LanguageRepository {
         session.close();
         return old;
     }
+
+
+    public Language deleteLanguage(Integer id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Language language = session.get(Language.class, id);
+        session.delete(language);
+        session.getTransaction().commit();
+        session.close();
+        return null;
+    }
 }

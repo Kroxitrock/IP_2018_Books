@@ -29,4 +29,12 @@ public class LanguageResource {
     public Language updateLanguage(@PathParam("id") Integer id, Language language) {
         return languageService.updateLanguage(id, language);
     }
+
+    @DELETE
+    @Path("/{id}")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Language deleteLanguage(@PathParam("id") Integer id) {
+        return languageService.deleteLanguage(id);
+    }
 }

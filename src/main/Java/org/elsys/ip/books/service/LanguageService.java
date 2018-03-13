@@ -13,4 +13,7 @@ public class LanguageService {
     public Language updateLanguage(Integer id, Language language) {
         return languageRepository.updateLanguage(id, language);
     }
+    public Language deleteLanguage(Integer id) {
+        return languageRepository.deleteLanguage(id);
+    }
 }
