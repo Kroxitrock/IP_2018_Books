@@ -46,7 +46,7 @@ public class Comments implements Serializable{
     public Double getRating() {
         return rating;
     }
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = User.class)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = User.class)
     public Set<User> getUser() {
         return user;
     }
