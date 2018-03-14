@@ -5,6 +5,7 @@ import org.elsys.ip.books.service.BookService;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import java.util.List;
 
@@ -16,5 +17,12 @@ public class BookResource {
     @Produces("application/json")
     public List<Book> getBooks(){
         return bookService.getBooks();
+    }
+
+    @GET
+    @Path("/{id}")
+    @Produces("application/json")
+    public Book getBookById(@PathParam("id") Integer id){
+        return bookService.getBookById(id);
     }
 }

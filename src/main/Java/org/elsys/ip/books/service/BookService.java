@@ -9,4 +9,6 @@ public class BookService {
     BookRepository bookRepository = new BookRepository();
 
     public List<Book> getBooks(){return bookRepository.getBooks();}
+
+    public Book getBookById(Integer id){return bookRepository.getBookById(id);}
 }

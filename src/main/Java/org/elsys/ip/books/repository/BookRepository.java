@@ -17,4 +17,11 @@ public class BookRepository {
         session.close();
         return books;
     }
+    public Book getBookById(Integer id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Book book = session.get(Book.class, id);
+        session.close();
+        return book;
+    }
 }

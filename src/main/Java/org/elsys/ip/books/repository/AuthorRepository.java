@@ -26,4 +26,12 @@ public class AuthorRepository {
         session.getTransaction().commit();
         return getAuthor();
     }
+
+    public Author getAuthorById(Integer id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Author book = session.get(Author.class, id);
+        session.close();
+        return book;
+    }
 }
