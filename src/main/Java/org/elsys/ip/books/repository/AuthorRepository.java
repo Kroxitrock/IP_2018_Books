@@ -19,12 +19,12 @@ public class AuthorRepository {
     }
 
 
-    public List<Author> addAuthor(Author аuthor){
+    public Author addAuthor(Author аuthor){
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.save(аuthor);
         session.getTransaction().commit();
-        return getAuthor();
+        return аuthor;
     }
 
     public Author getAuthorById(Integer id){
@@ -33,5 +33,15 @@ public class AuthorRepository {
         Author book = session.get(Author.class, id);
         session.close();
         return book;
+    }
+
+    public Author updateAuthor(Integer id, Author author){
+        return null;
+    }
+    public Author getAuthorByName(String id){
+        return null;
+    }
+    public Author deleteAuthor(Integer id){
+        return null;
     }
 }

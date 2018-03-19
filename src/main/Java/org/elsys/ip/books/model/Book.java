@@ -15,6 +15,7 @@ public class Book implements Serializable{
     private String coverPath;
 
     private Set<Language> prefferedLanguage = new HashSet<Language>();
+    private Set<Author> author = new HashSet<Author>();
 
     public Book() {
     }
@@ -26,12 +27,13 @@ public class Book implements Serializable{
         this.coverPath = coverPath;
     }
 
-    public Book(int id, Date releaseDate, String genre, String coverPath, Set<Language> prefferedLanguage) {
+    public Book(int id, Date releaseDate, String genre, String coverPath, Set<Language> prefferedLanguage, Set<Author> author) {
         this.id = id;
         this.releaseDate = releaseDate;
         this.genre = genre;
         this.coverPath = coverPath;
         this.prefferedLanguage = prefferedLanguage;
+        this.author = author;
     }
 
     @Id
@@ -57,6 +59,10 @@ public class Book implements Serializable{
     public Set<Language> getPrefferedLanguage() {
         return prefferedLanguage;
     }
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Author.class)
+    public Set<Author> getAuthor() {
+        return author;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -76,5 +82,9 @@ public class Book implements Serializable{
 
     public void setPrefferedLanguage(Set<Language> prefferedLanguage) {
         this.prefferedLanguage = prefferedLanguage;
+    }
+
+    public void setAuthor(Set<Author> author) {
+        this.author = author;
     }
 }

@@ -24,4 +24,17 @@ public class BookRepository {
         session.close();
         return book;
     }
+
+    public Book addBook(Book book){
+        return null;
+    }
+    public List<Book> getBooksByAuthor(Integer authorId){
+        return null;
+    }
+    public Book updateBook(Integer id, Book book){
+        return null;
+    }
+    public Book deleteBook(Integer id){
+        return null;
+    }
 }
