@@ -16,6 +16,7 @@ public class BookService {
     private CommentsRepository commentsRepository = new CommentsRepository();
 
     public List<Book> getBooks(){return bookRepository.getBooks();}
+    public List<Book> getBestBook(){return bookRepository.getBestBook();}
     public Book getBookById(Integer id){return bookRepository.getBookById(id);}
     public Book addBook(Book book){return bookRepository.addBook(book);}
     public Book updateBook(Integer id, Book book){return bookRepository.updateBook(id, book);}
@@ -25,11 +26,11 @@ public class BookService {
     public BookDescription addDescription(BookDescription description){return bookDescriptionRepository.addDescription(description);}
     public BookDescription getDescriptionByName(String name){return bookDescriptionRepository.getByName(name);}
     public BookDescription updateDescription(Integer id, BookDescription description){return bookDescriptionRepository.updateDescription(id,description);}
-    public BookDescription deleteDescrption(Integer id){return bookDescriptionRepository.deleteDescription(id);}
+    public BookDescription deleteDescription(Integer id){return bookDescriptionRepository.deleteDescription(id);}
 
     public Comments getCommentsByBook(Integer id){return commentsRepository.getCommentByBook(id);}
     public Comments addComment(Comments comment){return commentsRepository.addComment(comment);}
-    public Comments updateComment(Integer id, Comments comment){return commentsRepository.UpdateComment(id, comment);}
-    public Comments deleteComment(Integer id){return commentsRepository.deleteComent(id);}
+    public Comments updateComment(Integer id, Comments comment){return commentsRepository.updateComment(id, comment);}
+    public Comments deleteComment(Integer id){return commentsRepository.deleteComment(id);}
 }
 

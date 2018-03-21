@@ -17,6 +17,9 @@ public class BookRepository {
         session.close();
         return books;
     }
+
+    public List<Book> getBestBook(){ return null;}
+
     public Book getBookById(Integer id){
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
@@ -37,4 +40,5 @@ public class BookRepository {
     public Book deleteBook(Integer id){
         return null;
     }
+
 }

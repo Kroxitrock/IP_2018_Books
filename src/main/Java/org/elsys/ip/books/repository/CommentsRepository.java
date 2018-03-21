@@ -6,13 +6,13 @@ public class CommentsRepository {
     public Comments getCommentByBook(Integer id){
         return null;
     }
-    public Comments addComment(Comments coment){
+    public Comments addComment(Comments comment){
         return null;
     }
-    public Comments UpdateComment(Integer id, Comments comment){
+    public Comments updateComment(Integer id, Comments comment){
         return null;
     }
-    public Comments deleteComent(Integer id){
+    public Comments deleteComment(Integer id){
         return null;
     }
 }

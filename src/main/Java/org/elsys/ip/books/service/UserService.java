@@ -19,6 +19,8 @@ public class UserService {
 
     public User updateUser(Integer userId, User user){return userRepository.updateUser(userId, user);}
 
+    public User deleteUser(Integer id){return userRepository.deleteUser(id);}
+
     public List<ReadList> getReadList(Integer id){return readListRepository.getReadList(id);}
 
     public List<ReadList> getByStatus(Integer status){return readListRepository.getByStatus(status);}
