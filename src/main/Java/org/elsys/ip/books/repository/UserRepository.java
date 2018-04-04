@@ -38,6 +38,9 @@ public class UserRepository {
         session.beginTransaction();
         User old = session.get(User.class, id);
         old.setName(user.getName());
+        old.setEmail(user.getEmail());
+        old.setPassword(user.getPassword());
+        old.setPreferredLanguage(user.getPreferredLanguage());
         session.update(old);
         session.getTransaction().commit();
         session.close();

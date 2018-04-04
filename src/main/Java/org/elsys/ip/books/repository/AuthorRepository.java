@@ -40,6 +40,7 @@ public class AuthorRepository {
         session.beginTransaction();
         Author old = session.get(Author.class, id);
         old.setName(author.getName());
+        old.setBio(author.getBio());
         session.update(old);
         session.getTransaction().commit();
         session.close();

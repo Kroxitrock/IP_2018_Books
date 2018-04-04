@@ -39,11 +39,29 @@ public class BookRepository {
     public List<Book> getBooksByAuthor(Integer authorId){
         return null;
     }
+
     public Book updateBook(Integer id, Book book){
-        return null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Book old = session.get(Book.class, id);
+        old.setAuthor(book.getAuthor());
+        old.setCoverPath(book.getCoverPath());
+        old.setGenre(book.getGenre());
+        old.setPrefferedLanguage(book.getPrefferedLanguage());
+        old.setReleaseDate(book.getReleaseDate());
+        session.update(old);
+        session.getTransaction().commit();
+        session.close();
+        return old;
     }
     public Book deleteBook(Integer id){
-        return null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Book book = session.get(Book.class, id);
+        session.delete(book);
+        session.getTransaction().commit();
+        session.close();
+        return book;
     }
 
 }
