@@ -36,12 +36,28 @@ public class AuthorRepository {
     }
 
     public Author updateAuthor(Integer id, Author author){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Author old = session.get(Author.class, id);
+        old.setName(author.getName());
+        session.update(old);
+        session.getTransaction().commit();
+        session.close();
+        return old;
+    }
+
+    //TODO get author by name
+    public Author getAuthorByName(String name){
         return null;
     }
-    public Author getAuthorByName(String id){
-        return null;
-    }
+
     public Author deleteAuthor(Integer id){
-        return null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Author author = session.get(Author.class, id);
+        session.delete(author);
+        session.getTransaction().commit();
+        session.close();
+        return author;
     }
 }

@@ -1,28 +1,56 @@
 package org.elsys.ip.books.repository;
 
+import org.elsys.ip.books.config.HibernateUtil;
 import org.elsys.ip.books.model.User;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
 public class UserRepository {
 
     public List<User> getUsers(){
-        return null;
+        List<User> users = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Query query = session.createQuery("FROM org.elsys.ip.books.model.User");
+        users = (List<User>) query.list();
+        session.close();
+        return users;
     }
 
+    //TODO hashing password
     public User addUser(User user){
-        return null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.save(user);
+        session.getTransaction().commit();
+        return user;
     }
 
+    //TODO get by ID
     public User getUserById(Integer id){
         return null;
     }
 
     public User updateUser(Integer id, User user){
-        return null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        User old = session.get(User.class, id);
+        old.setName(user.getName());
+        session.update(old);
+        session.getTransaction().commit();
+        session.close();
+        return old;
     }
 
     public User deleteUser(Integer id){
-        return null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        User user = session.get(User.class, id);
+        session.delete(user);
+        session.getTransaction().commit();
+        session.close();
+        return user;
     }
 }

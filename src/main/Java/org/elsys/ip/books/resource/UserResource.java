@@ -7,6 +7,7 @@ import org.elsys.ip.books.service.UserService;
 import javax.ws.rs.*;
 import java.util.List;
 
+@Path("/users")
 public class UserResource {
 
     UserService userService = new UserService();
@@ -53,6 +54,8 @@ public class UserResource {
     public List<ReadList> getReadList(@PathParam("id") Integer id){
         return userService.getReadList(id);
     }
+
+    //TODO getByStatus(int)
 
     @POST
     @Path("/{id}/readList")

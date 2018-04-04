@@ -11,7 +11,13 @@ public class HibernateUtil {
 
     private static SessionFactory buildSessionFactory() {
         try {
-            Configuration configuration = new Configuration().addAnnotatedClass(Language.class).addAnnotatedClass(Author.class).addAnnotatedClass(Book.class).addAnnotatedClass(BookDescription.class).addAnnotatedClass(Comments.class).addAnnotatedClass(ReadList.class).addAnnotatedClass(User.class).configure();
+            Configuration configuration = new Configuration().addAnnotatedClass(Language.class)
+                                                             .addAnnotatedClass(Author.class)
+                                                             .addAnnotatedClass(Book.class)
+                                                             .addAnnotatedClass(BookDescription.class)
+                                                             .addAnnotatedClass(Comments.class)
+                                                             .addAnnotatedClass(ReadList.class)
+                                                             .addAnnotatedClass(User.class).configure();
             StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
             return configuration.buildSessionFactory(builder.build());
         }

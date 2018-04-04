@@ -17,7 +17,7 @@ public class LanguageResource {
     @POST
     @Consumes("application/json")
     @Produces("application/json")
-    public List<Language> addLanguage(Language language) {
+    public Language addLanguage(Language language) {
         return languageService.addLanguages(language);
     }
 

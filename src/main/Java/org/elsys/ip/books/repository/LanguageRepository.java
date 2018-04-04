@@ -20,12 +20,12 @@ public class LanguageRepository {
     }
 
 
-    public List<Language> addLanguages(Language language){
+    public Language addLanguages(Language language){
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.save(language);
         session.getTransaction().commit();
-        return getLanguages();
+        return language;
     }
 
     public Language updateLanguage(Integer id, Language language) {
@@ -47,6 +47,6 @@ public class LanguageRepository {
         session.delete(language);
         session.getTransaction().commit();
         session.close();
-        return null;
+        return language;
     }
 }

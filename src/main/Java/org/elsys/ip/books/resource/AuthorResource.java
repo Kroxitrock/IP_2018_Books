@@ -7,6 +7,7 @@ import org.elsys.ip.books.service.AuthorService;
 import javax.ws.rs.*;
 import java.util.List;
 
+@Path("/authors")
 public class AuthorResource {
 
     AuthorService authorService = new AuthorService();
@@ -31,6 +32,7 @@ public class AuthorResource {
         return authorService.getAuthorById(id);
     }
 
+    //TODO Get authors by name
 
     @PUT
     @Path("/{id}")

@@ -18,8 +18,6 @@ public class BookRepository {
         return books;
     }
 
-    public List<Book> getBestBook(){ return null;}
-
     public Book getBookById(Integer id){
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
@@ -29,8 +27,15 @@ public class BookRepository {
     }
 
     public Book addBook(Book book){
-        return null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.save(book);
+        session.getTransaction().commit();
+        return book;
     }
+
+    //TODO
+    public List<Book> getBestBook(){ return null;}
     public List<Book> getBooksByAuthor(Integer authorId){
         return null;
     }

@@ -57,6 +57,8 @@ public class BookResource {
         return bookService.getBookById(id);
     }
 
+    //TODO getDescriptionByName(str)
+    //TODO getLocalisedDescription(int, int)
 
     @POST
     @Path("/{id}/description")
