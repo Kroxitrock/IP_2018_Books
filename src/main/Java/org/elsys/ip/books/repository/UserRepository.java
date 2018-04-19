@@ -4,6 +4,7 @@ import org.elsys.ip.books.config.HibernateUtil;
 import org.elsys.ip.books.model.User;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.omg.PortableInterceptor.USER_EXCEPTION;
 
 import java.util.List;
 
@@ -28,9 +29,12 @@ public class UserRepository {
         return user;
     }
 
-    //TODO get by ID
     public User getUserById(Integer id){
-        return null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        User user = session.get(User.class, id);
+        session.close();
+        return user;
     }
 
     public User updateUser(Integer id, User user){

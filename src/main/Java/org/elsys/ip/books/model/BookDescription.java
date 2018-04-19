@@ -12,24 +12,22 @@ public class BookDescription implements Serializable{
     private String name;
     private String description;
 
-    private Set<Book> book = new HashSet<Book>();
-    private Set<Language> language = new HashSet<Language>();
+    private Book book;
+    private Language language;
+
+    private int pages;
 
     public BookDescription() {
     }
 
-    public BookDescription(int id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
 
-    public BookDescription(int id, String name, String description, Set<Book> book, Set<Language> language) {
+    public BookDescription(int id, String name, String description, Book book, Language language, int pages) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.book = book;
         this.language = language;
+        this.pages = pages;
     }
     @Id
     @GeneratedValue
@@ -48,15 +46,23 @@ public class BookDescription implements Serializable{
         return description;
     }
 
-    @ManyToOne(targetEntity = Book.class)
-    public Set<Book> getBook() {
+    @Column(name = "pages")
+    public int getPages() {
+        return pages;
+    }
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "book_id")
+    public Book getBook() {
         return book;
     }
 
-    @ManyToOne(targetEntity = Language.class)
-    public Set<Language> getLanguage() {
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "language_id")
+    public Language getLanguage() {
         return language;
     }
+
 
     public void setId(int id) {
         this.id = id;
@@ -70,11 +76,15 @@ public class BookDescription implements Serializable{
         this.description = description;
     }
 
-    public void setBook(Set<Book> book) {
+    public void setBook(Book book) {
         this.book = book;
     }
 
-    public void setLanguage(Set<Language> language) {
+    public void setLanguage(Language language) {
         this.language = language;
+    }
+
+    public void setPages(int pages) {
+        this.pages = pages;
     }
 }

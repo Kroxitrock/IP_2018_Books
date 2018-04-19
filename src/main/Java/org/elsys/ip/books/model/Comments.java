@@ -12,8 +12,8 @@ public class Comments implements Serializable{
     private String body;
     private Double rating;
 
-    private Set<User> user = new HashSet<User>();
-    private Set<Book> book = new HashSet<Book>();
+    private User user;
+    private Book book;
 
     public Comments() {
     }
@@ -24,7 +24,7 @@ public class Comments implements Serializable{
         this.rating = rating;
     }
 
-    public Comments(int id, String body, Double rating, Set<User> user, Set<Book> book) {
+    public Comments(int id, String body, Double rating, User user, Book book) {
         this.id = id;
         this.body = body;
         this.rating = rating;
@@ -46,12 +46,14 @@ public class Comments implements Serializable{
     public Double getRating() {
         return rating;
     }
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = User.class)
-    public Set<User> getUser() {
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    public User getUser() {
         return user;
     }
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Book.class)
-    public Set<Book> getBook() {
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "book_id")
+    public Book getBook() {
         return book;
     }
 
@@ -67,11 +69,11 @@ public class Comments implements Serializable{
         this.rating = rating;
     }
 
-    public void setUser(Set<User> user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
-    public void setBook(Set<Book> book) {
+    public void setBook(Book book) {
         this.book = book;
     }
 }

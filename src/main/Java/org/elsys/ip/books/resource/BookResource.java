@@ -13,6 +13,7 @@ public class BookResource {
     BookService bookService = new BookService();
 
     @GET
+    @Path("/admin")
     @Produces("application/json")
     public List<Book> getBooks(){
         return bookService.getBooks();
@@ -57,7 +58,12 @@ public class BookResource {
         return bookService.getBookById(id);
     }
 
-    //TODO getDescriptionByName(str)
+    @GET
+    @Consumes("application/json")
+    @Produces("application/json")
+    public List<BookDescription> getDescriptionByName(@DefaultValue("") @QueryParam("name") String name){
+        return bookService.getDescriptionByName(name);
+    }
     //TODO getLocalisedDescription(int, int)
 
     @POST
@@ -71,7 +77,9 @@ public class BookResource {
     @Path("/{id}/description/{descriptionId}")
     @Consumes("application/json")
     @Produces("application/json")
-    public BookDescription updateDescription(@PathParam("descriptionId") Integer id, BookDescription description){return bookService.updateDescription(id, description);}
+    public BookDescription updateDescription(@PathParam("descriptionId") Integer id, BookDescription description){
+        return bookService.updateDescription(id, description);
+    }
 
     @DELETE
     @Path("/{id}/description/{descriptionId}")
@@ -98,7 +106,9 @@ public class BookResource {
     @Path("/{id}/comments/{commentId}")
     @Consumes("application/json")
     @Produces("application/json")
-    public Comments updateComment(@PathParam("commentId") Integer id, Comments comment){return bookService.updateComment(id, comment);}
+    public Comments updateComment(@PathParam("commentId") Integer id, Comments comment){
+        return bookService.updateComment(id, comment);
+    }
 
     @DELETE
     @Path("/{id}/comments/{commentId}")

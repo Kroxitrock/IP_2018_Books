@@ -11,12 +11,12 @@ public class BookRepository {
     public List<Book> getBooks(){
         List<Book> books = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
         Query query = session.createQuery("FROM org.elsys.ip.books.model.Book");
         books = (List<Book>) query.list();
         session.close();
         return books;
     }
+
 
     public Book getBookById(Integer id){
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -47,7 +47,6 @@ public class BookRepository {
         old.setAuthor(book.getAuthor());
         old.setCoverPath(book.getCoverPath());
         old.setGenre(book.getGenre());
-        old.setPrefferedLanguage(book.getPrefferedLanguage());
         old.setReleaseDate(book.getReleaseDate());
         session.update(old);
         session.getTransaction().commit();

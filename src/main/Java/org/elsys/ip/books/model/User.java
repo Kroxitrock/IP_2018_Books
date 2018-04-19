@@ -2,6 +2,7 @@ package org.elsys.ip.books.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -51,7 +52,9 @@ public class User implements Serializable{
     public String getEmail() {
         return email;
     }
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Language.class)
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "preferred_language")
     public Language getPreferredLanguage() {
         return preferredLanguage;
     }

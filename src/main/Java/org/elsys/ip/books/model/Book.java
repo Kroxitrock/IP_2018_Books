@@ -10,29 +10,20 @@ import java.util.Set;
 @Table(name = "book")
 public class Book implements Serializable{
     private int id;
-    private Date releaseDate;
+    private java.sql.Date releaseDate;
     private String genre;
     private String coverPath;
 
-    private Set<Language> prefferedLanguage = new HashSet<Language>();
-    private Set<Author> author = new HashSet<Author>();
+    private Author author;
 
     public Book() {
     }
 
-    public Book(int id, Date releaseDate, String genre, String coverPath) {
+    public Book(int id, java.sql.Date releaseDate, String genre, String coverPath, Author author) {
         this.id = id;
         this.releaseDate = releaseDate;
         this.genre = genre;
         this.coverPath = coverPath;
-    }
-
-    public Book(int id, Date releaseDate, String genre, String coverPath, Set<Language> prefferedLanguage, Set<Author> author) {
-        this.id = id;
-        this.releaseDate = releaseDate;
-        this.genre = genre;
-        this.coverPath = coverPath;
-        this.prefferedLanguage = prefferedLanguage;
         this.author = author;
     }
 
@@ -44,7 +35,7 @@ public class Book implements Serializable{
     }
 
     @Column(name = "release_date")
-    public Date getReleaseDate() {
+    public java.sql.Date getReleaseDate() {
         return releaseDate;
     }
     @Column(name = "genre")
@@ -55,12 +46,9 @@ public class Book implements Serializable{
     public String getCoverPath() {
         return coverPath;
     }
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Language.class)
-    public Set<Language> getPrefferedLanguage() {
-        return prefferedLanguage;
-    }
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Author.class)
-    public Set<Author> getAuthor() {
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "author_id")
+    public Author getAuthor() {
         return author;
     }
 
@@ -68,7 +56,7 @@ public class Book implements Serializable{
         this.id = id;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(java.sql.Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -80,11 +68,7 @@ public class Book implements Serializable{
         this.coverPath = coverPath;
     }
 
-    public void setPrefferedLanguage(Set<Language> prefferedLanguage) {
-        this.prefferedLanguage = prefferedLanguage;
-    }
-
-    public void setAuthor(Set<Author> author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 }

@@ -11,13 +11,14 @@ public class AuthorService {
     private AuthorRepository authorRepository = new AuthorRepository();
     private BookRepository bookRepository = new BookRepository();
 
-    public List<Author> getAuthors(){return authorRepository.getAuthor();}
+//    public List<Author> getAuthors(String name){if (name == "") return authorRepository.getAuthor();
+//    else return getAuthorByName("name")}
 
     public Author addAuthor(Author author){return authorRepository.addAuthor(author);}
 
     public Author getAuthorById(Integer id){return authorRepository.getAuthorById(id);}
 
-    public Author getAuthorByName(String name){return authorRepository.getAuthorByName(name);}
+    public List<Author> getAuthorByName(String name){return authorRepository.getAuthorByName(name);}
 
     public Author updateAuthor(Integer id, Author author){return authorRepository.updateAuthor(id, author);}
 

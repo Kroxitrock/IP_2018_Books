@@ -24,7 +24,7 @@ public class BookService {
 
     public BookDescription getLocalisedDescription(Integer languageId, Integer bookId){return bookDescriptionRepository.getLocalisedDescription(languageId, bookId);}
     public BookDescription addDescription(BookDescription description){return bookDescriptionRepository.addDescription(description);}
-    public BookDescription getDescriptionByName(String name){return bookDescriptionRepository.getByName(name);}
+    public List<BookDescription> getDescriptionByName(String name){return bookDescriptionRepository.getByName(name);}
     public BookDescription updateDescription(Integer id, BookDescription description){return bookDescriptionRepository.updateDescription(id,description);}
     public BookDescription deleteDescription(Integer id){return bookDescriptionRepository.deleteDescription(id);}
 

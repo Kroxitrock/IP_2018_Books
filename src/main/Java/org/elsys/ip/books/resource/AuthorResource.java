@@ -12,9 +12,6 @@ public class AuthorResource {
 
     AuthorService authorService = new AuthorService();
 
-    @GET
-    @Produces("application/json")
-    public List<Author> getAuthors(){ return authorService.getAuthors();}
 
     @POST
     @Consumes("application/json")
@@ -33,6 +30,13 @@ public class AuthorResource {
     }
 
     //TODO Get authors by name
+
+    @GET
+    @Consumes("application/json")
+    @Produces("application/json")
+    public List<Author> getAuthorsByName(@DefaultValue("") @QueryParam("name") String name){
+        return authorService.getAuthorByName(name);
+    }
 
     @PUT
     @Path("/{id}")
@@ -58,4 +62,6 @@ public class AuthorResource {
     public List<Book> getBooksByAuthor(@PathParam("id") Integer id) {
         return authorService.getBooksByAuthor(id);
     }
+
+
 }

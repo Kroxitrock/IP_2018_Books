@@ -18,7 +18,6 @@ public class AuthorRepository {
         return author;
     }
 
-
     public Author addAuthor(Author аuthor){
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
@@ -30,9 +29,9 @@ public class AuthorRepository {
     public Author getAuthorById(Integer id){
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        Author book = session.get(Author.class, id);
+        Author author = session.get(Author.class, id);
         session.close();
-        return book;
+        return author;
     }
 
     public Author updateAuthor(Integer id, Author author){
@@ -47,9 +46,16 @@ public class AuthorRepository {
         return old;
     }
 
-    //TODO get author by name
-    public Author getAuthorByName(String name){
-        return null;
+    public List<Author> getAuthorByName(String name){
+        List<Author> author = null;
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Query query = session.createQuery("SELECT auth FROM org.elsys.ip.books.model.Author auth " +
+                "WHERE auth.name LIKE'%" + name +"%'");
+        author = (List<Author>) query.list();
+        session.close();
+        return author;
     }
 
     public Author deleteAuthor(Integer id){

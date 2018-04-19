@@ -40,6 +40,7 @@ create table book_description(
     language_id int,
     name varchar(255),
     description varchar(10000),
+    pages int,
 
     foreign key (book_id) references book(id),
     foreign key (language_id) references language(id)

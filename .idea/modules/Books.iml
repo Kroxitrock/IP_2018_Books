@@ -4,7 +4,7 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
-          <unit-entry name="scratch.xml" />
+          <unit-entry name="scratch.xml" value="c0822707-4839-40d5-bbb6-c27fd38bb181" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.xml" />

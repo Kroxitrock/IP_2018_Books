@@ -10,7 +10,7 @@ public class ReadList implements Serializable{
     private int id;
     private int status;
 
-    private Set<User> user;
+    private User user;
     private Set<Book> book;
 
     public ReadList() {
@@ -21,7 +21,7 @@ public class ReadList implements Serializable{
         this.status = status;
     }
 
-    public ReadList(int id, int status, Set<User> user, Set<Book> book) {
+    public ReadList(int id, int status, User user, Set<Book> book) {
         this.id = id;
         this.status = status;
         this.user = user;
@@ -39,8 +39,10 @@ public class ReadList implements Serializable{
         return status;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = User.class)
-    public Set<User> getUser() {
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    public User getUser() {
         return user;
     }
     @OneToMany(fetch = FetchType.LAZY, targetEntity = Book.class)
@@ -56,7 +58,7 @@ public class ReadList implements Serializable{
         this.status = status;
     }
 
-    public void setUser(Set<User> user) {
+    public void setUser(User user) {
         this.user = user;
     }
 

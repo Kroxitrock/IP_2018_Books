@@ -1,5 +1,6 @@
 package org.elsys.ip.books.resource;
 
+import jdk.nashorn.internal.objects.annotations.Getter;
 import org.elsys.ip.books.model.ReadList;
 import org.elsys.ip.books.model.User;
 import org.elsys.ip.books.service.UserService;

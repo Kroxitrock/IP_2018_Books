@@ -3,14 +3,43 @@ package org.elsys.ip.books.repository;
 import org.elsys.ip.books.config.HibernateUtil;
 import org.elsys.ip.books.model.BookDescription;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
+
+import java.util.List;
 
 public class BookDescriptionRepository {
+
+    private List<BookDescription> getBookDescriptions(){
+        List<BookDescription> bookDescriptions = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Query query = session.createQuery("FROM org.elsys.ip.books.model.Author");
+        bookDescriptions = (List<BookDescription>) query.list();
+        session.close();
+        return bookDescriptions;
+    }
     //TODO
     public BookDescription getLocalisedDescription(Integer languageId, Integer bookId){
-        return null;
+        BookDescription bookDescriptions = null;
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Query query = session.createQuery("SELECT desc FROM org.elsys.ip.books.model.BookDescription desc " +
+                "WHERE desc " + + " ");
+        bookDescriptions = (List<BookDescription>) query.list();
+        session.close();
+        return bookDescriptions;
     }
-    public BookDescription getByName(String name){
-        return null;
+    public List<BookDescription> getByName(String name){
+        List<BookDescription> bookDescriptions = null;
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Query query = session.createQuery("SELECT desc FROM org.elsys.ip.books.model.BookDescription desc " +
+                "WHERE desc.name LIKE'%" + name +"%'");
+        bookDescriptions = (List<BookDescription>) query.list();
+        session.close();
+        return bookDescriptions;
     }
 
     public BookDescription addDescription(BookDescription bookDescription){
