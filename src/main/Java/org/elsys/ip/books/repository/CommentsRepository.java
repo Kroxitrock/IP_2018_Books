@@ -3,11 +3,20 @@ package org.elsys.ip.books.repository;
 import org.elsys.ip.books.config.HibernateUtil;
 import org.elsys.ip.books.model.Comments;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+
+import java.util.List;
 
 public class CommentsRepository {
     //TODO
-    public Comments getCommentByBook(Integer id){
-        return null;
+    public List<Comments> getCommentByBook(Integer id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        List comments = session.createCriteria(Comments.class)
+                .createCriteria("book", "b")
+                .add( Restrictions.eq("b.id", id) )
+                .list();
+        return comments;
     }
 
     public Comments addComment(Comments comment){

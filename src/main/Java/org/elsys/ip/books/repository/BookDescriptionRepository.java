@@ -1,8 +1,10 @@
 package org.elsys.ip.books.repository;
 
 import org.elsys.ip.books.config.HibernateUtil;
+import org.elsys.ip.books.model.Book;
 import org.elsys.ip.books.model.BookDescription;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
 import java.util.List;
@@ -18,25 +20,27 @@ public class BookDescriptionRepository {
         session.close();
         return bookDescriptions;
     }
+
     //TODO
     public BookDescription getLocalisedDescription(Integer languageId, Integer bookId){
-        BookDescription bookDescriptions = null;
-
         Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        Query query = session.createQuery("SELECT desc FROM org.elsys.ip.books.model.BookDescription desc " +
-                "WHERE desc " + + " ");
-        bookDescriptions = (List<BookDescription>) query.list();
-        session.close();
-        return bookDescriptions;
+
+        Object bookDescription = session.createCriteria(BookDescription.class)
+                .createCriteria("language", "l")
+                .createCriteria("book", "b")
+                .add( Restrictions.eq("l.id", languageId))
+                .add( Restrictions.eq("b.id", bookId))
+                .uniqueResult();
+        return (BookDescription) bookDescription;
     }
+
     public List<BookDescription> getByName(String name){
         List<BookDescription> bookDescriptions = null;
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        Query query = session.createQuery("SELECT desc FROM org.elsys.ip.books.model.BookDescription desc " +
-                "WHERE desc.name LIKE'%" + name +"%'");
+        Query query = session.createQuery("SELECT descr FROM org.elsys.ip.books.model.BookDescription descr " +
+                "WHERE descr.name LIKE'%" + name +"%'");
         bookDescriptions = (List<BookDescription>) query.list();
         session.close();
         return bookDescriptions;

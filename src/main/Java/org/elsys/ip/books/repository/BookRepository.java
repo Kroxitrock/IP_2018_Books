@@ -1,8 +1,12 @@
 package org.elsys.ip.books.repository;
 
 import org.elsys.ip.books.config.HibernateUtil;
+import org.elsys.ip.books.model.Author;
 import org.elsys.ip.books.model.Book;
+import org.elsys.ip.books.model.BookDescription;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
 import java.util.List;
@@ -17,7 +21,6 @@ public class BookRepository {
         return books;
     }
 
-
     public Book getBookById(Integer id){
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
@@ -26,7 +29,7 @@ public class BookRepository {
         return book;
     }
 
-    public Book addBook(Book book){
+    public Book addBook(Book book)  {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.save(book);
@@ -35,9 +38,22 @@ public class BookRepository {
     }
 
     //TODO
-    public List<Book> getBestBook(){ return null;}
+    public List<Book> getBestBook(){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List books = session.createCriteria(Book.class)
+                .createCriteria("comments", "auth")
+                .list();
+        return books;
+    }
+
     public List<Book> getBooksByAuthor(Integer authorId){
-        return null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        List books = session.createCriteria(Book.class)
+                .createCriteria("author", "auth")
+                .add( Restrictions.eq("auth.id", authorId) )
+                .list();
+        return books;
     }
 
     public Book updateBook(Integer id, Book book){

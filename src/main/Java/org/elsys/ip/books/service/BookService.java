@@ -28,7 +28,7 @@ public class BookService {
     public BookDescription updateDescription(Integer id, BookDescription description){return bookDescriptionRepository.updateDescription(id,description);}
     public BookDescription deleteDescription(Integer id){return bookDescriptionRepository.deleteDescription(id);}
 
-    public Comments getCommentsByBook(Integer id){return commentsRepository.getCommentByBook(id);}
+    public List<Comments> getCommentsByBook(Integer id){return commentsRepository.getCommentByBook(id);}
     public Comments addComment(Comments comment){return commentsRepository.addComment(comment);}
     public Comments updateComment(Integer id, Comments comment){return commentsRepository.updateComment(id, comment);}
     public Comments deleteComment(Integer id){return commentsRepository.deleteComment(id);}

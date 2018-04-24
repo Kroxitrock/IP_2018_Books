@@ -5,6 +5,7 @@ import org.elsys.ip.books.model.ReadList;
 import org.elsys.ip.books.model.User;
 import org.elsys.ip.books.resource.UserResource;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
 import java.util.List;
@@ -12,14 +13,13 @@ import java.util.List;
 public class ReadListRepository {
     //TODO
     public List<ReadList> getReadList(Integer id){
-        List<ReadList> list = null;
-//        Session session = HibernateUtil.getSessionFactory().openSession();
-//        session.beginTransaction();
-//        Query query = session.createQuery("SELECT list FROM org.elsys.ip.books.model.ReadList list " +
-//                "WHERE list.user_id =" + id);
-//        list = (List<ReadList>) query.list();
-//        session.close();
-        return list;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        List readList = session.createCriteria(ReadList.class)
+                .createCriteria("user", "u")
+                .add( Restrictions.eq("u.id", id) )
+                .list();
+        return readList;
     }
     public List<ReadList> getByStatus(Integer status){
         return null;

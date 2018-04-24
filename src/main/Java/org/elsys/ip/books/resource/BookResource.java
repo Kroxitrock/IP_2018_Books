@@ -20,7 +20,7 @@ public class BookResource {
     }
 
     @GET
-    @Path("/bestBook")
+    @Path("/bestBooks")
     @Produces("application/json")
     public List<Book> getBestBook(){
         return bookService.getBestBook();
@@ -64,10 +64,17 @@ public class BookResource {
     public List<BookDescription> getDescriptionByName(@DefaultValue("") @QueryParam("name") String name){
         return bookService.getDescriptionByName(name);
     }
-    //TODO getLocalisedDescription(int, int)
+
+    @GET
+    @Path("/{id}/description/{langId}")
+    @Produces("application/json")
+    public BookDescription getLocalisedDescription(@PathParam("id") Integer bookId, @PathParam("langId") Integer langId){
+        return bookService.getLocalisedDescription(langId, bookId);
+    }
 
     @POST
     @Path("/{id}/description")
+    @Consumes("application/json")
     @Produces("application/json")
     public BookDescription addDescription(BookDescription description){
         return bookService.addDescription(description);
@@ -91,7 +98,7 @@ public class BookResource {
     @GET
     @Path("/{id}/comments")
     @Produces("application/json")
-    public Comments getBookComments(@PathParam("id") Integer id){
+    public List<Comments> getBookComments(@PathParam("id") Integer id){
         return bookService.getCommentsByBook(id);
     }
 
