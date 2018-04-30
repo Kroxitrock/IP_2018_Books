@@ -45,7 +45,9 @@ public class ReadList implements Serializable{
     public User getUser() {
         return user;
     }
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = Book.class)
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "book_id")
     public Set<Book> getBook() {
         return book;
     }

@@ -21,16 +21,17 @@ public class BookDescriptionRepository {
         return bookDescriptions;
     }
 
-    //TODO
+
     public BookDescription getLocalisedDescription(Integer languageId, Integer bookId){
         Session session = HibernateUtil.getSessionFactory().openSession();
-
-        Object bookDescription = session.createCriteria(BookDescription.class)
-                .createCriteria("language", "l")
+        Object bookDescription = session.createCriteria(BookDescription.class, "bd")
                 .createCriteria("book", "b")
-                .add( Restrictions.eq("l.id", languageId))
-                .add( Restrictions.eq("b.id", bookId))
-                .uniqueResult();
+                .createCriteria("bd.language", "l")
+                .add(Restrictions.eq("l.id", languageId))
+                .add(Restrictions.eq("b.id", bookId))
+                .setMaxResults(1).uniqueResult();
+
+
         return (BookDescription) bookDescription;
     }
 

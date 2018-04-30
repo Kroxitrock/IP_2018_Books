@@ -4,10 +4,13 @@ import org.elsys.ip.books.config.HibernateUtil;
 import org.elsys.ip.books.model.Author;
 import org.elsys.ip.books.model.Book;
 import org.elsys.ip.books.model.BookDescription;
+import org.elsys.ip.books.model.Comments;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
+import org.hibernate.sql.JoinType;
 
 import java.util.List;
 
@@ -39,10 +42,15 @@ public class BookRepository {
 
     //TODO
     public List<Book> getBestBook(){
+        List<Book> books = null;
+
         Session session = HibernateUtil.getSessionFactory().openSession();
-        List books = session.createCriteria(Book.class)
-                .createCriteria("comments", "auth")
-                .list();
+        session.beginTransaction();
+        Query query = session.createQuery("FROM Comments c " +
+                "right outer join Book b " +
+                "order by c.rating asc");
+        books = (List<Book>) query.list();
+        session.close();
         return books;
     }
 

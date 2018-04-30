@@ -11,7 +11,7 @@ import org.hibernate.query.Query;
 import java.util.List;
 
 public class ReadListRepository {
-    //TODO
+
     public List<ReadList> getReadList(Integer id){
         Session session = HibernateUtil.getSessionFactory().openSession();
 

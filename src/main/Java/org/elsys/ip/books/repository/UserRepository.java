@@ -20,7 +20,7 @@ public class UserRepository {
         return users;
     }
 
-    //TODO hashing password
+
     public User addUser(User user){
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();

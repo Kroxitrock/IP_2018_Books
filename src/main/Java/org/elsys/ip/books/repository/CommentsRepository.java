@@ -8,7 +8,6 @@ import org.hibernate.criterion.Restrictions;
 import java.util.List;
 
 public class CommentsRepository {
-    //TODO
     public List<Comments> getCommentByBook(Integer id){
         Session session = HibernateUtil.getSessionFactory().openSession();
 
