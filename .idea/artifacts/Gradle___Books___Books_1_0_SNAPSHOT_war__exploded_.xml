@@ -22,7 +22,6 @@
           <element id="library" level="project" name="Gradle: javax.servlet:javax.servlet-api:3.1.0" />
           <element id="library" level="project" name="Gradle: org.hibernate:hibernate-core:5.2.12.Final" />
           <element id="library" level="project" name="Gradle: mysql:mysql-connector-java:5.1.12" />
-          <element id="library" level="project" name="Gradle: com.restfb:restfb:2.4.0" />
           <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet-core:2.23" />
           <element id="library" level="project" name="Gradle: org.glassfish.jersey.core:jersey-server:2.23" />
           <element id="library" level="project" name="Gradle: org.glassfish.jersey.core:jersey-client:2.23" />
@@ -55,7 +54,12 @@
           <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2-utils:2.4.0-b34" />
           <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:aopalliance-repackaged:2.4.0-b34" />
           <element id="library" level="project" name="Gradle: javax.inject:javax.inject:1" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.json/json/20090211/c183aa3a2a6250293808bba12262c8920ce5a51c/json-20090211.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.tomcat/tomcat-catalina/7.0.50/9dd1c51d4464e58a0d2c90d7a116f8dc466dd812/tomcat-catalina-7.0.50.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.tomcat/tomcat-util/7.0.50/149e3252c49ce22f928c4ad1eeff7c7ddd423f9f/tomcat-util-7.0.50.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.tomcat/tomcat-api/7.0.50/9912927f4e930dfd28a5fd9d2a30dcadf9f5f20e/tomcat-api-7.0.50.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.tomcat/tomcat-servlet-api/7.0.50/c9082185020b52b5685330d2d237997ac0e480c/tomcat-servlet-api-7.0.50.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.tomcat/tomcat-juli/7.0.50/e962961a52255bb3a7fa779d37a6218eb766d09/tomcat-juli-7.0.50.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.tomcat/tomcat-annotations-api/7.0.50/844eb835738dc1ca0e74056917e8ce3dcf10f72d/tomcat-annotations-api-7.0.50.jar" />
         </element>
       </element>
     </root>

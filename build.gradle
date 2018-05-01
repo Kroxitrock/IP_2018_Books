@@ -21,7 +21,5 @@ dependencies {
     compile 'org.hibernate:hibernate-core:5.2.12.Final'
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.12'
 
-    compile group: 'com.restfb', name: 'restfb', version: '2.4.0'
-    compile group: 'org.json', name: 'json', version: '20090211'
-
+    compile group: 'org.apache.tomcat', name: 'tomcat-catalina', version: '7.0.50'
 }
